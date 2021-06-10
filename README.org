@@ -1,0 +1,3 @@
+#+TITLE: Yet Another Social Media platform
+* What is YASMP?
+Yasmp is yet another social media platform that aims to connect people through projects and small events.
