@@ -1,11 +1,19 @@
 {-# LANGUAGE OverloadedStrings #-}
-import Network.Wai
-import Network.Wai.Handler.Warp (run)
-import Network.HTTP.Types (status200)
+import Web.Scotty
+import Data.Monoid (mconcat)
+import Text.Blaze.Html.Renderer.Text (renderHtml)
+import qualified Text.Blaze.Html5 as H
+
+homepage :: H.Html
+homepage = H.html $
+          H.body $ do
+            H.h1 "Yasmp - Yet Another Social Media Platform"
 
 main :: IO ()
-main = run 3000 $ \_req send ->
-  send $ responseBuilder
-    status200
-    [("Content-Type", "text/plain; charset=utf-8")]
-    "Hello World from WAI!"
+main =
+  scotty 3000 $ do
+    get "/" $
+      html $ renderHtml homepage
+    get "/:word" $ do
+      word <- param "word"
+      html $ mconcat ["<h1>Hello, ", word, "!</h1>"]

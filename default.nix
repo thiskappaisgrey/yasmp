@@ -1,5 +1,5 @@
-{ mkDerivation, base, http-types, lib, wai, wai-conduit, wai-extra
-, warp
+{ mkDerivation, base, blaze-html, http-types, lib, scotty, wai
+, wai-conduit, wai-extra, warp
 }:
 mkDerivation {
   pname = "yasmp";
@@ -8,7 +8,7 @@ mkDerivation {
   isLibrary = false;
   isExecutable = true;
   executableHaskellDepends = [
-    base http-types wai wai-conduit wai-extra warp
+    base blaze-html http-types scotty wai wai-conduit wai-extra warp
   ];
   license = "unknown";
   hydraPlatforms = lib.platforms.none;

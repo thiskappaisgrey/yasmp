@@ -1,0 +1,4 @@
+* Inbox
+** TODO Add a database(postgresql) to the project. Check the Deep Work nix file(or my bookmarks) for the tutorial on how to do it
+
+[[file:~/code/yasmp/app/Main.hs::html $ mconcat \["<h1>Hello, ", word, "!</h1>"\]]]

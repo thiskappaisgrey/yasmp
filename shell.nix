@@ -11,5 +11,6 @@ pkgs.stdenv.mkDerivation {
   buildInputs = project.env.nativeBuildInputs ++ [
     haskellPackages.cabal-install
     haskellPackages.haskell-language-server
+    haskellPackages.ghcid
   ];
 }
