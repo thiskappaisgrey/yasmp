@@ -22,6 +22,24 @@ maintainer:         thanatechaumnuaiwit@gmail.com
 extra-source-files:
     CHANGELOG.md
     README.org
+library
+    hs-source-dirs: src
+    build-depends:    base ^>=4.14.1.0
+                    , aeson
+                    , wai
+                    , warp
+                    , wai-extra
+                    , wai-conduit
+                    , text
+                    , http-types
+                    , scotty
+                    , sqlite-simple
+                    , beam-core
+                    , beam-sqlite
+                    , beam-migrate
+                    , time
+                    , lucid
+    exposed-modules: Lib, DB, Pages
 
 executable yasmp
     main-is:          Main.hs
@@ -31,15 +49,21 @@ executable yasmp
 
     -- LANGUAGE extensions used by modules in this package.
     -- other-extensions:
-    build-depends:    base ^>=4.14.1.0
-                    , wai
-                    , warp
-                    , wai-extra
-                    , wai-conduit
-                    , http-types
-                    , scotty
-                    , blaze-html
-                    , blaze-markup
-
+    build-depends:  base ^>=4.14.1.0
+                    , yasmp
     hs-source-dirs:   app
     default-language: Haskell2010
+
+test-suite yasmp-test
+    type:       exitcode-stdio-1.0
+    main-is:    Spec.hs
+    hs-source-dirs: test
+    build-depends: yasmp
+                   , base
+                   , hspec
+                   , hspec-contrib
+                   , QuickCheck
+                   , quickcheck-instances
+                   , text
+    -- This won't work nicely with nix unfortunately
+    -- build-tool-depends: hspec-discover:hspec-discover

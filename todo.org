@@ -1,4 +1,26 @@
 * Inbox
-** TODO Add a database(postgresql) to the project. Check the Deep Work nix file(or my bookmarks) for the tutorial on how to do it
+* Projects
+** Proj Create basic CRUD functionality for small events(MVP, using basic technologies only, like scotty and sqlite-simple)
+*** [ ] Add a database(sqlite) to the project. Check the Deep Work nix file(or my bookmarks) for the tutorial on how to do it
 
 [[file:~/code/yasmp/app/Main.hs::html $ mconcat \["<h1>Hello, ", word, "!</h1>"\]]]
+*** [ ] Work on the API(and pages) for creating and deleting events
+- Maybe do the thing where if you request for HTML, you get HTML, and if you request for JSON you get JSON
+** Proj Transition to a frontend framework, using purescript(or elm, but most likely purescript)
+** Proj As I get better at haskell, transition to something more robust like Servant(for all the type-level goodies)
+* Backlog
+** Idea Add a feature where users can tag events, and allow people to find events by tag
+** Idea People can also search for events by keyword too
+** Idea Add a modal to warn people of the dangers of going out with strangers
+** Idea Allow people to filter for the times when they are free(conflict resolution, you can enter times you are free and filter)
+** Idea Add authentication to authenticate users
+** Idea Allow people to create private groups(for a friend group or something)
+- People might only want to use the app with people they trust
+- Maybe a friend in the group has a random idea for an event, so we can add features for conflict resolution and such
+** Idea Allow people to add public events where anyone(account or not) can join in
+- Allows you to meet new people easily
+** Idea Add private communities where only verified users can sign up for an account(I don't want my app to be the cause for murders lol)
+- So that users in the same community(but are not particularly close) can find events to bond over
+* Finished tasked
+** DONE Add testing with Quickcheck and Hspec and learned a little bit how Quickcheck works
+CLOSED: [2021-08-24 Tue 22:59]

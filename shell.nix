@@ -25,5 +25,7 @@ pkgs.stdenv.mkDerivation {
     haskellPackages.cabal-install
     haskellPackages.haskell-language-server
     haskellPackages.ghcid
+    pkgs.cabal2nix
+    pkgs.sqlite3
   ];
 }
