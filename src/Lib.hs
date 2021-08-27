@@ -1,7 +1,7 @@
 {-# LANGUAGE DoAndIfThenElse #-}
 {-# LANGUAGE ExtendedDefaultRules #-}
 {-# LANGUAGE OverloadedStrings #-}
-module Lib (acceptHtml) where
+module Lib (acceptHtml, app) where
 import qualified Data.Text as T
 import qualified Data.Text.Lazy as TZ
 import Web.Scotty
@@ -15,8 +15,8 @@ acceptHtml (Just t) =
   let acceptHeaders = TZ.splitOn "," t
    in "text/html" `elem` acceptHeaders
 
-main :: IO ()
-main =
+app :: IO ()
+app =
   scotty 3000 $ do
     get "/" $ do
       accept <- header "Accept"

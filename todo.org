@@ -1,4 +1,11 @@
 * Inbox
+** TODO Create the Event Model with beam with an auto-increment key and create monadic interfaces to insert a user into the db and query a user from the db
+- https://haskell-beam.github.io/beam/tutorials/tutorial2/
+
+[[file:~/code/yasmp/src/Models/Event.hs::module Models.Event where]]
+** TODO Create monads to insert Events/Users into the database
+
+[[file:~/code/yasmp/src/DB.hs::aggregateUsers :: IO ()]]
 * Projects
 ** Proj Create basic CRUD functionality for small events(MVP, using basic technologies only, like scotty and sqlite-simple)
 *** [ ] Add a database(sqlite) to the project. Check the Deep Work nix file(or my bookmarks) for the tutorial on how to do it
