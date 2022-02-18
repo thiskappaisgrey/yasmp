@@ -1,7 +1,12 @@
+{-# LANGUAGE RecordWildCards #-}
 -- |
 module Models.Event where
 import Database.Beam
 import Data.Text (Text)
+import Data.Int
+import Data.Aeson
+import Data.Maybe (fromMaybe)
+
 data EventT f
     = Event
     { _eventId     :: C f Int32
@@ -13,13 +18,24 @@ data EventT f
 
 instance Table EventT where
   data PrimaryKey EventT f = EventT (Columnar f Int32) deriving (Generic, Beamable)
-    primaryKey = EventT . _eventId
-type AddressId = PrimaryKey AddressT Identity -- For convenience
-
--- A type with a higher kind, for example, (* -> *) can be thought of as a kind of function
--- Identity type is a higher-kinded (* -> *) type such that (Identity a) = (a), where a is a type
--- This technique is called defunctionalization or highter-kinded data types
-type Event = EventT Identity --  (Event @Identity) :: Text -> Text -> Text -> Text -> EventT Identity
-deriving instance Show Event -- uses the extensions StandaloneDeriving and TypeSynonymInstances to derive from the type synonym
+  primaryKey = EventT . _eventId
+type Event = EventT Identity
+deriving instance Show Event
 deriving instance Eq Event
 type EventId = PrimaryKey EventT Identity
+
+instance FromJSON Event where
+  parseJSON = withObject "Event" $ \v -> do
+        idMaybe <- v .:? "id"
+        name <- v .: "name"
+        des <- v .: "description"
+        -- event id is optional
+        let id = fromMaybe 0 idMaybe
+        return (Event id name des)
+
+instance ToJSON Event where
+  toJSON Event {..} = object [
+    "name" .= _eventName
+    , "id" .= _eventId
+    , "description" .= _eventDescription
+                             ]

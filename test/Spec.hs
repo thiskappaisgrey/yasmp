@@ -6,6 +6,7 @@ import Control.Exception (evaluate)
 import Data.Text.Lazy as T
 import Test.QuickCheck.Instances.Text 
 import Lib
+import qualified EventSpec
 -- generates a list of values that inclues the item "text/html"
 htmlGen :: Gen (Maybe T.Text)
 htmlGen = do
@@ -21,10 +22,12 @@ htmlGenFalse = do
 htmlProp x = forAll htmlGen acceptHtml
 htmlPropFalse x = forAll htmlGenFalse (not . acceptHtml)
 
+
 main :: IO ()
-main = hspec $
+main = hspec $ do
   describe "Lib.acceptHtml" $ do
-  it "Returns false when the text given is a nothing" $
-    acceptHtml Nothing  `shouldBe` False
-  it "Returns true when the text given a string that contains \"text/html\"" htmlProp
-  it "Returns false when given a string that doesn't contain \"text/html\"" htmlPropFalse
+    it "Returns false when the text given is a nothing" $
+      acceptHtml Nothing  `shouldBe` False
+    it "Returns true when the text given a string that contains \"text/html\"" htmlProp
+    it "Returns false when given a string that doesn't contain \"text/html\"" htmlPropFalse
+  EventSpec.spec

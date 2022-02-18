@@ -4,7 +4,7 @@ case $1 in
     app)
         ghcid -c 'cabal new-repl' \
                     --reload=./src \
-                    -T Lib.main \
+                    -T Lib.app \
                     --restart=./yasmp.cabal;;
     test)
         ghcid -c "cabal new-repl yasmp-test" --test "main";;

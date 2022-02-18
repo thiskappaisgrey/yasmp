@@ -1,0 +1,7 @@
+POST localhost:3000
+Content-Type: application/json
+
+{
+        "eventName": "hello",
+        "eventDescription": "hello"
+}

@@ -23,7 +23,7 @@ extra-source-files:
     CHANGELOG.md
     README.org
 library
-    hs-source-dirs: src, src/Models
+    hs-source-dirs: src, src/*
     default-language: Haskell2010
     default-extensions: OverloadedStrings
                     , DeriveGeneric
@@ -57,6 +57,9 @@ library
                    , Models.User
                    , Models.Event
                    , Models.Tag
+                   , Actions.User
+                   , Actions.Event
+                   , Actions.Tag
 
 executable yasmp
     main-is:          Main.hs
@@ -68,6 +71,8 @@ executable yasmp
     -- other-extensions:
     build-depends:  base ^>=4.14.1.0
                     , yasmp
+                    , scotty
+                    , sqlite-simple
     hs-source-dirs:   app
     default-language: Haskell2010
 
@@ -76,12 +81,20 @@ test-suite yasmp-test
     main-is:    Spec.hs
     hs-source-dirs: test
     default-language: Haskell2010
+    other-extensions: OverloadedStrings
     build-depends: yasmp
                    , base
+                   , aeson
                    , hspec
                    , hspec-contrib
+                   , hspec-wai
                    , QuickCheck
                    , quickcheck-instances
+                   , wai
+                   , scotty
+                   , sqlite-simple
+                   , beam-core
+                   , beam-sqlite
                    , text
     -- This won't work nicely with nix unfortunately
     -- build-tool-depends: hspec-discover:hspec-discover
